@@ -28,8 +28,11 @@ alarm_name = "DemoAlarm"
 # The name of the security group
 security_group_name = "demo-sg"
 
-# The name of the SNS topic
-sns_topic_name = "demo-sns"
+# The name of the SNS topic.  Note as of 10/15/24, there is a bug in AWS associated with 
+# CloudWatch alarms and SNS targets.  See https://stackoverflow.com/questions/62694223/cloudwatch-alarm-pending-confirmation
+# This will affect you if you apply/destroy the Terraform multiple times.  You must give the
+# SNS topic a new name each cycle.
+sns_topic_name = "demo-sns-2"
 
 # The email address subscibing to the SNS topic
 sns_email = "<your_email>"
