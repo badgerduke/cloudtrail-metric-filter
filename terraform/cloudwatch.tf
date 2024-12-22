@@ -18,12 +18,12 @@ resource "aws_cloudwatch_log_metric_filter" "count_cloudtrail_modifications" {
 resource "aws_cloudwatch_metric_alarm" "demo_alarm" {
   alarm_name          = var.alarm_name
   metric_name         = aws_cloudwatch_log_metric_filter.count_cloudtrail_modifications.metric_transformation[0].name
-  threshold           = "2"
+  threshold           = "1"
   statistic           = "Sum"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   datapoints_to_alarm = "1"
   evaluation_periods  = "1"
-  period              = "120"
+  period              = "60"
   namespace           = aws_cloudwatch_log_metric_filter.count_cloudtrail_modifications.metric_transformation[0].namespace
   alarm_actions       = [aws_sns_topic.example_sns_topic.arn]
 }
